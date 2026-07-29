@@ -39,9 +39,9 @@ resource "aws_s3_bucket_public_access_block" "terraform_state" {
 
 # prevent pipelines from running apply on the same state at once.
 resource "aws_dynamodb_table" "terraform_locks" {
-  name           = "terraform-state-locks"
-  billing_mode   = "PAY_PER_REQUEST"
-  hash_key       = "LockID"
+  name         = "terraform-state-locks"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "LockID"
 
   attribute {
     name = "LockID"
