@@ -12,7 +12,7 @@ data "aws_ami" "image" {
 }
 
 resource "aws_instance" "instance"{
-    ami = aws_ami.image.id
+    ami = data.aws_ami.image.id
     instance_type = var.instance_type
     user_data = var.user_data
 }
