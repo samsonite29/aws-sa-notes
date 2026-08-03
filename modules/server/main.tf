@@ -13,8 +13,59 @@ data "aws_ami" "image" {
   }
 }
 
-resource "aws_instance" "instance"{
-    ami = data.aws_ami.image.id
-    instance_type = var.instance_type
-    user_data = var.user_data
+# Lookup for default vpc id
+data "aws_vpc" "default_vpc" {
+  default = true
+}
+
+# Lookup for AZs
+data "aws_availability_zones" "available" {}
+
+
+# Lookup for default subnet id
+data "aws_subnet" "default_subnet" {
+  vpc_id            = data.aws_vpc.default_vpc.id
+  availability_zone = data.aws_availability_zones.available.names[0]
+  default_for_az    = true
+}
+
+
+resource "aws_security_group" "allow_web_ssh" {
+  name        = "allow_web_ssh"
+  description = "Allow web inbound traffic"
+  vpc_id      = data.aws_vpc.default_vpc.id
+}
+# Ingress - Traffic going into your system . Ingress rules: who can initiate a connection to you.
+# Egress - Traffic going out of your system. Egress rules: what you're allowed to initiate a connection to.
+# SSH is 22, HTTP is 80 and HTTPS is 443.
+
+resource "aws_vpc_security_group_ingress_rule" "allow_web_ssh_http_ipv4_ingress" {
+  security_group_id = aws_security_group.allow_web_ssh.id
+
+  cidr_ipv4   = "0.0.0.0/0"
+  from_port   = 80
+  ip_protocol = "tcp"
+  to_port     = 80
+}
+
+resource "aws_vpc_security_group_ingress_rule" "allow_web_ssh_ipv4_ingress" {
+  security_group_id = aws_security_group.allow_web_ssh.id
+  cidr_ipv4         = "0.0.0.0/0"
+  from_port         = 22
+  ip_protocol       = "tcp"
+  to_port           = 22
+}
+
+resource "aws_vpc_security_group_egress_rule" "allow_all_ipv4_egress" {
+  security_group_id = aws_security_group.allow_web_ssh.id
+  cidr_ipv4         = "0.0.0.0/0"
+  ip_protocol       = "-1"
+}
+
+resource "aws_instance" "instance" {
+  ami                    = data.aws_ami.image.id
+  instance_type          = var.instance_type
+  subnet_id              = data.aws_subnet.default_subnet.id
+  vpc_security_group_ids = [aws_security_group.allow_web_ssh.id]
+  user_data              = var.user_data
 }
