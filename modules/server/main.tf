@@ -50,7 +50,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_web_ssh_http_ipv4_ingress"
 
 resource "aws_vpc_security_group_ingress_rule" "allow_web_ssh_ipv4_ingress" {
   security_group_id = aws_security_group.allow_web_ssh.id
-  cidr_ipv4         = "0.0.0.0/0"
+  cidr_ipv4         = "18.202.216.48/29"
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
