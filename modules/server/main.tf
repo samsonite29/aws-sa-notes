@@ -39,14 +39,15 @@ resource "aws_security_group" "allow_web_ssh" {
 # Egress - Traffic going out of your system. Egress rules: what you're allowed to initiate a connection to.
 # SSH is 22, FTP is 21, SFTP is also 22 , RDO is 3389, HTTP is 80 and HTTPS is 443
 
-resource "aws_vpc_security_group_ingress_rule" "allow_web_ssh_https_ipv4_ingress" {
-  security_group_id = aws_security_group.allow_web_ssh.id
+// Cerificated Needed to run this
+# resource "aws_vpc_security_group_ingress_rule" "allow_web_ssh_https_ipv4_ingress" {
+#   security_group_id = aws_security_group.allow_web_ssh.id
 
-  cidr_ipv4   = "0.0.0.0/0"
-  from_port   = 443
-  ip_protocol = "tcp"
-  to_port     = 443
-}
+#   cidr_ipv4   = "0.0.0.0/0"
+#   from_port   = 443
+#   ip_protocol = "tcp"
+#   to_port     = 443
+# }
 
 resource "aws_vpc_security_group_ingress_rule" "allow_web_ssh_http_ipv4_ingress" {
   security_group_id = aws_security_group.allow_web_ssh.id
