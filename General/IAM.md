@@ -36,7 +36,6 @@ This is a report that shows you a list of users and the status of their credenti
 2. IAM Access Advisor - User Level
 The advisor shows the service permissions granted to a user and when those services were last accessed. The advisor can be useful when revision of policies takes places, Revision of policies includes(Making them compliant, Accurate and Effective in the context of security)
 
-
 ## IAM Best Practices
 
 1. Do not use root accounts
@@ -44,10 +43,3 @@ The advisor shows the service permissions granted to a user and when those servi
 3. Enforce MFA
 4. Create and Use Roles for giving permissions to AWS services
 5. For auditing the IAM credentials use the credentials report and IAM access advisor
-
-
-
-## Security Groups
-
-Resources - EC2
-SG controls traffic to and from your instance
