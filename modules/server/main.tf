@@ -79,3 +79,8 @@ resource "aws_instance" "instance" {
   vpc_security_group_ids = [aws_security_group.allow_web_ssh.id]
   user_data              = var.user_data
 }
+
+resource "aws_eip" "lb"{
+  instance = aws_instance.instance.id
+  domain   = "vpc"
+}
