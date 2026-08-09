@@ -80,7 +80,8 @@ resource "aws_instance" "instance" {
   user_data              = var.user_data
 }
 
-resource "aws_eip" "lb"{
-  instance = aws_instance.instance.id
-  domain   = "vpc"
-}
+# Elastic IP
+# resource "aws_eip" "lb"{
+#   instance = aws_instance.instance.id
+#   domain   = "vpc"
+# }
