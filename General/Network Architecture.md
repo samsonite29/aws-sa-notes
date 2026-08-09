@@ -20,16 +20,35 @@ Placement groups enables users to influence how instances are placed on underlyi
 - Cluster Strategy Placement Group : Enables applications with tightly coulped node to node communication to achieve low lantency network performance by putting all the EC2 in a single AZ.
     Tradeoff - Users goal is low latency and high network througput and because of this goal the strategy isn't fault tolerant(Fault tolerance specifically refers to a system's capability to handle faults without any degradation or downtime.) With cluster strategy, you would have correllated failures meaning if the AZ fails,all systems go down.This strategy favors network performance over fault tolerance/availability.
 
+    ![Cluster Placement Group](../General/diagrams/pg-cluster.svg)
+
 - Spread Placement Group: places critical instances on different racks/hardware, with the   goal of high availability and reducing the risk of correlated failures.
     Tradeoff — because the goal is fault isolation, you give up low latency. Instances aren't optimized to be physically close, so inter-instance communication isn't as fast as it would be in a Cluster group. This strategy favors fault tolerance/availability over network performance.
+
+    ![Spread Placement Group](../General/diagrams/pg-spread.svg)
 
 - Partition Placement Group: divides a large group of instances into logical partitions, where no two partitions share the same underlying racks, with the goal of reducing correlated failures for large distributed, replicated workloads.
     Tradeoff — because the goal is fault isolation, you give up low latency. Instances aren't optimized to be physically close, so inter-instance communication isn't as fast as it would be in a Cluster group. This strategy favors fault tolerance/availability over network performance, but the isolation is weaker than Spread's since instances within the same partition can still share hardware.
 
-### Reference
+    ![Partition Placement Group](../General/diagrams/pg-partition.svg)
 
-1. https://medium.com/pinterest-engineering/how-pinterest-runs-kafka-at-scale-ff9c6f735be
-2.  https://aws.amazon.com/blogs/compute/using-partition-placement-groups-for-large-distributed-and-replicated-workloads-in-amazon-ec2/
+### PG Reference
+
+1. <https://medium.com/pinterest-engineering/how-pinterest-runs-kafka-at-scale-ff9c6f735be>
+2. <https://aws.amazon.com/blogs/compute/using-partition-placement-groups-for-large-distributed-and-replicated-workloads-in-amazon-ec2/>
+
+## Elastic Network Interface
+
+A physical network card connects computers or servers to a network. A network card facilitates(Makes an action or a process smoother and more likely to happen) communication between a computer/server and a local area network (LAN), wide area network (WAN), or the internet. It serves as an interface that allows the computer/server to connect to a network's physical medium such as copper wire, fiber optic, or wireless transmission. They operate the layer 3 and layer 2 for the infrastructure they are attached to.
+
+A virtual network card is a software based emulation of a physical network card. ENI represent a virtual network card.
+
+
+ ![Elastic Network Interface](../General/diagrams/eni.svg)
+
+### ENI Reference
+
+1. <https://www.fs.com/uk/blog/what-is-a-network-interface-card-nic-definition-function-types-526.html>
 
 ## Terminologies
 
