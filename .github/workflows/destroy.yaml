@@ -30,5 +30,7 @@ jobs:
 
       - name: Terraform Destroy (EC2 + volumes only)
         run: |
-          terraform destroy -auto-approve \
-            -target=module.ec2_instance.aws_instance.instance
+            terraform destroy -auto-approve \
+            -target=module.ec2_instance \
+            -target=module.ec2_instance_two
+            -target=module.instance_network
