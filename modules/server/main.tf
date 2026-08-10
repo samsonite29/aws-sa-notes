@@ -24,3 +24,17 @@ resource "aws_instance" "instance" {
   vpc_security_group_ids = var.security_group_ids
   user_data              = var.user_data
 }
+
+
+# Elastic Network Interface
+
+resource "aws_network_interface" "web_network_interface" {
+  subnet_id       = var.subnet_id
+  security_groups = var.security_group_ids
+  description = "Secondary ENI"
+
+  attachment {
+    instance     = aws_instance.instance.id
+    device_index = 1
+  }
+}
