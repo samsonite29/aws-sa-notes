@@ -12,7 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: hashicorp/setup-terraform@v3
-      - run: terraform init
-        working-directory: <your-terraform-dir>
-      - run: terraform force-unlock -force "${{ github.event.inputs.lock_id }}"
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v4
+      - name: Terraform Init
+        run: terraform init -upgrade
+      - name: Terraform Force Unlock
+        run: terraform force-unlock -force "${{ github.event.inputs.lock_id }}"
