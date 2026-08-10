@@ -11,15 +11,20 @@ jobs:
   unlock:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v6.2.3
-        with:
-          role-to-assume: arn:aws:iam::738678806999:role/GitHubActionsTerraformRole
-          aws-region: eu-west-1
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v4
-      - name: Terraform Init
-        run: terraform init -upgrade
-      - name: Terraform Force Unlock
-        run: terraform force-unlock -force "${{ github.event.inputs.lock_id }}"
+        - name: Checkout
+          uses: actions/checkout@v4
+
+        - name: Configure AWS credentials
+          uses: aws-actions/configure-aws-credentials@v6.2.3
+          with:
+            role-to-assume: arn:aws:iam::738678806999:role/GitHubActionsTerraformRole
+            aws-region: eu-west-1
+
+        - name: Setup Terraform
+          uses: hashicorp/setup-terraform@v4
+
+        - name: Terraform Init
+          run: terraform init -upgrade
+
+        - name: Terraform Force Unlock
+          run: terraform force-unlock -force "${{ github.event.inputs.lock_id }}"
