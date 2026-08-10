@@ -23,6 +23,9 @@ resource "aws_security_group" "allow_web_ssh" {
   name        = "allow_web_ssh"
   description = "Allow web inbound traffic"
   vpc_id      = data.aws_vpc.default_vpc.id
+  timeouts {
+    delete = "5m"
+  }
 }
 # Ingress - Traffic going into your system . Ingress rules: who can initiate a connection to you.
 # Egress - Traffic going out of your system. Egress rules: what you're allowed to initiate a connection to.

@@ -1,0 +1,18 @@
+# .github/workflows/terraform-unlock.yml
+name: Terraform Force Unlock
+on:
+  workflow_dispatch:
+    inputs:
+      lock_id:
+        description: "Lock ID from the failed run's error message"
+        required: true
+
+jobs:
+  unlock:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform init
+        working-directory: <your-terraform-dir>
+      - run: terraform force-unlock -force "${{ github.event.inputs.lock_id }}"
