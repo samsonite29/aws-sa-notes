@@ -48,6 +48,7 @@ A virtual network card is a software based emulation of a physical network card.
 ### ENI Reference
 
 1. <https://www.fs.com/uk/blog/what-is-a-network-interface-card-nic-definition-function-types-526.html>
+2. ENI deep dive - https://aws.amazon.com/blogs/aws/new-elastic-network-interfaces-in-the-virtual-private-cloud/
 
 ## Terminologies
 
