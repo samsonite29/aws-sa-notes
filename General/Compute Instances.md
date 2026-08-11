@@ -81,3 +81,11 @@ There are different strategies to allocating spot instances:
 2. Diversified - Fleets distributed across pools which gives high availability and better for long workloads
 3. Capacity Optimized - Pool with optimal capacity for the number of instance
 4. PriceCapacityOptimized - Pools with the highest capacity available where you can also select the pool with the lowest price
+
+## EC2 Hibernate 
+
+EC2 Hibernation saves the contents from the instance memory (RAM) to your Amazon Elastic Block Store (Amazon EBS) root volume.Amazon EC2 persists the instance's EBS root volume and any attached EBS data volumes
+
+### Reference 
+
+https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html
