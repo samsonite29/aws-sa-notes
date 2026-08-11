@@ -17,6 +17,14 @@ data "aws_ami" "image" {
   }
 }
 
+# EBS block 
+
+resource "aws_ebs_volume" "web_ebs" {
+  availability_zone = var.zone
+  size = var.ebs_size
+}
+
+
 resource "aws_instance" "instance" {
   ami                    = data.aws_ami.image.id
   instance_type          = var.instance_type
@@ -39,9 +47,8 @@ resource "aws_network_interface" "web_network_interface" {
   }
 }
 
-# EBS block 
-
-resource "aws_ebs_volume" "web_ebs" {
-  availability_zone = var.zone
-  size = var.ebs_size
+resource "aws_volume_attachment" "ebs_att" {
+  device_name = "/dev/sdh"
+  volume_id   = aws_ebs_volume.web_ebs.id
+  instance_id = aws_instance.instance.id
 }
