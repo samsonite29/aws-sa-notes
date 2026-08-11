@@ -33,12 +33,6 @@ resource "aws_ebs_snapshot" "web_ebs_snapshot" {
   volume_id = aws_ebs_volume.web_ebs.id
 }
 
-# Snapshot copy for both secondary volumes to a different region for the purpose of DR
-resource "aws_ebs_snapshot_copy" "web_ebs_snapshot_copy" {
-  provider            = aws.dr
-  source_snapshot_id  = aws_ebs_snapshot.web_ebs_snapshot.id
-  source_region       = data.aws_region.current.name 
-}
 resource "aws_instance" "instance" {
   ami                    = data.aws_ami.image.id
   instance_type          = var.instance_type

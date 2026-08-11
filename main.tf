@@ -10,8 +10,3 @@ provider "aws" {
     }
   }
 }
-
-provider "aws" {
-  alias  = "dr"
-  region = "eu-north-1"
-}
