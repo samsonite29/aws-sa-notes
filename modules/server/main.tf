@@ -19,11 +19,17 @@ data "aws_ami" "image" {
 
 # EBS block 
 
+# Secondary volumes, To make use of default volumes, Do a fetch
 resource "aws_ebs_volume" "web_ebs" {
   availability_zone = var.zone
   size = var.ebs_size
 }
 
+# Snapshot for secondary volumes
+
+resource "aws_ebs_snapshot" "web_ebs_snapshot" {
+  volume_id = aws_ebs_volume.web_ebs.id
+}
 
 resource "aws_instance" "instance" {
   ami                    = data.aws_ami.image.id
