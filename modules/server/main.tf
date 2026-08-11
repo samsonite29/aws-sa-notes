@@ -17,6 +17,8 @@ data "aws_ami" "image" {
   }
 }
 
+data "aws_region" "current" {} 
+
 # EBS block 
 
 # Secondary volumes, To make use of default volumes, Do a fetch
@@ -33,8 +35,9 @@ resource "aws_ebs_snapshot" "web_ebs_snapshot" {
 
 # Snapshot copy for both secondary volumes to a different region for the purpose of DR
 resource "aws_ebs_snapshot_copy" "web_ebs_snapshot_copy" {
-  source_snapshot_id = aws_ebs_snapshot.web_ebs_snapshot.id
-  source_region      = "eu-north-1"
+  provider            = aws.dr
+  source_snapshot_id  = aws_ebs_snapshot.web_ebs_snapshot.id
+  source_region       = data.aws_region.current.name 
 }
 resource "aws_instance" "instance" {
   ami                    = data.aws_ami.image.id
