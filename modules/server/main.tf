@@ -38,3 +38,10 @@ resource "aws_network_interface" "web_network_interface" {
     device_index = 1
   }
 }
+
+# EBS block 
+
+resource "aws_ebs_volume" "web_ebs" {
+  availability_zone = var.zone
+  size = var.ebs_size
+}

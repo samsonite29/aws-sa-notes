@@ -10,6 +10,8 @@ module "ec2_instance" {
   user_data          = file("user_data.sh")
   subnet_id          = module.instance_network.subnet_id
   security_group_ids = [module.instance_network.security_group_id]
+  zone = module.instance_network.zones[0]
+  ebs_size = 2
 }
 
 
@@ -19,4 +21,6 @@ module "ec2_instance_two" {
   user_data          = file("user_data.sh")
   subnet_id          = module.instance_network.subnet_id
   security_group_ids = [module.instance_network.security_group_id]
+  zone = module.instance_network.zones[0]
+  ebs_size = 2
 }

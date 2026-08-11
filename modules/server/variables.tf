@@ -18,3 +18,13 @@ variable "security_group_ids" {
   description = "Security group IDs"
   type = list(string)
 }
+
+variable "zone" {
+  description = "single az zone"
+  type = string
+}
+
+variable "ebs_size" {
+  description = "EBS volume Size"
+  type = number
+}
