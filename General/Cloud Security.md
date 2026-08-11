@@ -1,6 +1,8 @@
-# IAM - Identity Access Management
+# Cloud Security
 
-## Anatomy of an IAM policy
+## IAM - Identity Access Management
+
+### Anatomy of an IAM policy
 
 Given the below policy example
 
@@ -29,14 +31,14 @@ Where principal = Account or user or role the policy would be applied to
 Action = List of actions the policies allows or denies depending on the effect
 Resource = Resources the policy applies to
 
-## IAM Security Tools
+### IAM Security Tools
 
 1. IAM Credentials Report - Account level
 This is a report that shows you a list of users and the status of their credentials in an account
 2. IAM Access Advisor - User Level
 The advisor shows the service permissions granted to a user and when those services were last accessed. The advisor can be useful when revision of policies takes places, Revision of policies includes(Making them compliant, Accurate and Effective in the context of security)
 
-## IAM Best Practices
+### IAM Best Practices
 
 1. Do not use root accounts
 2. One AWS user = one physical user

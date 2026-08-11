@@ -41,7 +41,7 @@ Placement groups enables users to influence how instances are placed on underlyi
 
 A physical network card connects computers or servers to a network. A network card facilitates(Makes an action or a process smoother and more likely to happen) communication between a computer/server and a local area network (LAN), wide area network (WAN), or the internet. It serves as an interface that allows the computer/server to connect to a network's physical medium such as copper wire, fiber optic, or wireless transmission. They operate the layer 3 and layer 2 of the OSI model  for the infrastructure they are attached to.
 
-A virtual network card is a software based emulation of a physical network card. ENI represent a virtual network card.
+A virtual network card is a software based emulation of a physical network card. ENI represent a virtual network card. They are bound to a specific AZ
 
  ![Elastic Network Interface](../General/diagrams/eni.svg)
 
