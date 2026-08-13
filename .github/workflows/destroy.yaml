@@ -1,4 +1,4 @@
-name: Terraform Nightly Destroy
+name: Destory Resources
 
 on:
   schedule:

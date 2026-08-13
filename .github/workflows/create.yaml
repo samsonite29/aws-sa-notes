@@ -37,5 +37,11 @@ jobs:
         run: terraform plan -no-color -input=false
         continue-on-error: true
         
+      # - name: Terraform Apply 
+      #   run: terraform apply -auto-approve
       - name: Terraform Apply 
-        run: terraform apply -auto-approve
+        run: terraform apply \
+          -target=module.instance_network \
+          -target=module.ec2_instance_alpha \
+          -target=aws_ami_from_instance.alpha_custom_ami \
+          -target=aws_instance.instance

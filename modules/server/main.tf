@@ -33,8 +33,12 @@ resource "aws_ebs_snapshot" "web_ebs_snapshot" {
   volume_id = aws_ebs_volume.web_ebs.id
 }
 
+locals {
+  ami_image = coalesce(var.ami_image, data.aws_ami.image.id)
+}
+
 resource "aws_instance" "instance" {
-  ami                    = data.aws_ami.image.id
+  ami                    = local.ami_image
   instance_type          = var.instance_type
   subnet_id              = var.subnet_id
   vpc_security_group_ids = var.security_group_ids

@@ -28,3 +28,10 @@ variable "ebs_size" {
   description = "EBS volume Size"
   type = number
 }
+
+
+variable "ami_image" {
+  description = "ami image"
+  type = string
+  default = null
+}

@@ -1,5 +1,5 @@
 # .github/workflows/terraform-unlock.yml
-name: Terraform Force Unlock
+name: Force Unlock
 on:
   workflow_dispatch:
     inputs:
