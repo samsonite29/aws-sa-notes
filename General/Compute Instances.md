@@ -93,6 +93,6 @@ https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html
 
 ## AMI Process
 
-AMI Amazon Machine Image OS is imahge that provides software that is required to setup and boot EC2 Instances. You can create an AMI from your Amazon EC2 instances and then use it to launch instances with the same configuration.
+AMI Amazon Machine Image OS is imahge that provides software that is required to setup and boot EC2 Instances. You can create an AMI from your Amazon EC2 instances and then use it to launch instances with the same configuration. AMI are locked to a region
 
- ![AMI](../General/diagrams/AMI.svg)
+ ![AMI](../general/diagrams/AMI.svg)
