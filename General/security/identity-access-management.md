@@ -1,8 +1,6 @@
-# Cloud Security
+# IAM - Identity Access Management
 
-## IAM - Identity Access Management
-
-### Anatomy of an IAM policy
+## Anatomy of an IAM policy
 
 Given the below policy example
 
