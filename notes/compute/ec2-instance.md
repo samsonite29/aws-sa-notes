@@ -2,7 +2,7 @@
 
 ## EC2 Instance Types
 
-1. General Purpose Instance -  These instances have a good balance between Compute, Memory and Networking
+1. notes Purpose Instance -  These instances have a good balance between Compute, Memory and Networking
 2. Compute Optimized(C name) - Good for compute intensive tasks such as High performance computing(HPC), Batch Processing, Dedicated Gaming Servers, Machine learning
 3. Memory Optimized(RAM, R name ) - processing large datasets in memory - Databases, Distributed Cache, In memory db, Real time processing of big unstructed data
 4. Storage Optimized(I or D name) - Storage intensive task such as read and writing of large datasets on local storage - Cache, Data warehouse, OLTP, Distributed File Systems
@@ -95,4 +95,4 @@ https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html
 
 AMI Amazon Machine Image OS is imahge that provides software that is required to setup and boot EC2 Instances. You can create an AMI from your Amazon EC2 instances and then use it to launch instances with the same configuration. AMI are locked to a region
 
- ![AMI](../../general/diagrams/AMI.svg)
+ ![AMI](../../notes/diagrams/AMI.svg)

@@ -20,7 +20,7 @@ A physical network card connects computers or servers to a network. A network ca
 
 A virtual network card is a software based emulation of a physical network card. ENI represent a virtual network card. They are bound to a specific AZ
 
- ![Elastic Network Interface](../../../general/diagrams/eni.svg)
+ ![Elastic Network Interface](../../../notes/diagrams/eni.svg)
 
 ### ENI Reference
 

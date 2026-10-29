@@ -1,4 +1,4 @@
-# Storage General Knowlegde
+# Storage Notes
 
 ## EBS Elastic Block Store
 
@@ -8,11 +8,11 @@ They are bound/locked to a specific AZ and they are easily detachable. Root/ pri
 
 The whole purpose of EBS volumes is persist data even after the termination of Instances..
 
- ![Elastic Block Store](../../../general/diagrams/ebs.svg)
+ ![Elastic Block Store](../../../notes/diagrams/ebs.svg)
 
 EBS volume most porpular
 
-1. GP2 and GP3 SSD - General Purpose SSD that are cost effective and provides low latency 
+1. GP2 and GP3 SSD - notes Purpose SSD that are cost effective and provides low latency 
 
 ## EC2 Instance Store
 
