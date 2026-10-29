@@ -2,9 +2,11 @@
 
 ## EBS Elastic Block Store
 
-So think of this like a virtual hard drive(flash drive i.e you can remove and plug) that is attached to your instance while they run. Its a portable storage device that is connected over the network. They are used to persist data even after their termination. Very good for long term storage
+So think of this like a network flash drive that is attached to your instance while they run. Its a portable storage device that is connected over the network. They are used to persist data even after their termination. Very good for long term storage
 
-They are bound/locked to a specific AZ and they are easily detachable. Root/ primary EBS are deleted by default whenever the associated instance are terminated but secondary are not deleted by default
+They are bound/locked to a specific AZ and they are easily detachable. Root/ primary EBS are deleted by default whenever the associated instance are terminated but secondary are not deleted by default.
+
+The whole purpose of EBS volumes is persist data even after the termination of Instances..
 
  ![Elastic Block Store](../../../general/diagrams/ebs.svg)
 
