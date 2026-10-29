@@ -50,7 +50,7 @@ resource "aws_ami_from_instance" "alpha_custom_ami" {
   }
 }
 
-module "ec2_instance_alpha" {
+module "ec2_instance_beta" {
   source             = "./modules/ec2-instance"
   instance_type      = "t3.micro"
   ami_image          = aws_ami_from_instance.alpha_custom_ami.id
