@@ -96,6 +96,6 @@ https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/Hibernate.html
 1. AMI Amazon Machine Image OS is imahge that provides software that is required to setup and boot EC2 Instances.
 2. You can create an AMI from your Amazon EC2 instances and then use it to launch instances with the same configuration.
 
-3. AMI are locked to a region and can also be copied across regions
+3. AMI are locked to a region and can also be copied across regions but can't be used to launch instances in another region(Big difference)
 
- ![AMI](../../notes/diagrams/AMI.svg)
+![alt text](image.png)

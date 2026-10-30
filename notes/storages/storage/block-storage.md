@@ -12,7 +12,7 @@ The whole purpose of EBS volumes is persist data even after the termination of I
 
 EBS volume types - EBS volume types differ in performance, characterstics and cost
 
-1. GP2 and GP3 SSD  - Transactional Workfloads, Low Latency applications
+1. GP2 and GP3 SSD  - Transactional Workfloads Low Latency applications
 2. Io2 Block express - More IOPS performance aroudn 64k and High throughput
 3. Io1 - IOPS performance around 16k, I/O intensive database workloads
 
@@ -25,9 +25,10 @@ EBS volume types - EBS volume types differ in performance, characterstics and co
 ![alt text](image.png)
 
 
-## EC2 Instance Store (AKA High Performance Hardware Volumen for EC2s)
+## EC2 Instance Store (AKA High Performance Hardware Volume for EC2s)
 
  1. Instance Store are disks(hard drives that are physicall bolted into a machine) physically attached to the host vms / computer.
  2. Instance store are ideal for temporary storage such as buffers, caches etc.
- 3. Very good for temporary storage and I/O performance.
- 4. Instance Store are ephemeral(Zero Durability)
+ 3. Very good for temporary storage and I/O performance over 300k.
+ 4. Instance Store are ephemeral(Zero Durability) which means data is loss when EC2 instance is stopped. This can be resolved by setting up a Point In Time Replication Mechanism to another ec2 or you backup data up on S3 buckets.
+ 5. if you need very high IOPS instance is the way to go
