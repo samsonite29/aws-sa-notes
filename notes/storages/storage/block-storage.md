@@ -10,12 +10,22 @@ The whole purpose of EBS volumes is persist data even after the termination of I
 
  ![Elastic Block Store](../../../notes/diagrams/ebs.svg)
 
-EBS volume most popular
+EBS volume types - EBS volume types differ in performance, characterstics and cost
 
-1. GP2 and GP3 SSD - notes Purpose SSD that are cost effective and provides low latency
-2. What are the difference types of EBS volume types and when do you use a particular one?
+1. GP2 and GP3 SSD  - Transactional Workfloads, Low Latency applications
+2. Io2 Block express - More IOPS performance aroudn 64k and High throughput
+3. Io1 - IOPS performance around 16k, I/O intensive database workloads
 
-## EC2 Instance Store AKA High Performance Hardware Volumen for EC2s
+### EBS Multi Attach
+
+1. This is the process of attaching a single volume to multple instances in the same AZ.
+2. A single EBS volume can only be attached to up to 16 instances at a time.
+3. Multi Attach only works for the Io1 and Io2 families
+
+![alt text](image.png)
+
+
+## EC2 Instance Store (AKA High Performance Hardware Volumen for EC2s)
 
  1. Instance Store are disks(hard drives that are physicall bolted into a machine) physically attached to the host vms / computer.
  2. Instance store are ideal for temporary storage such as buffers, caches etc.
