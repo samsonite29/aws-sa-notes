@@ -38,11 +38,12 @@ locals {
 }
 
 resource "aws_instance" "instance" {
-  ami                    = local.ami_image
-  instance_type          = var.instance_type
-  subnet_id              = var.subnet_id
-  vpc_security_group_ids = var.security_group_ids
-  user_data              = var.user_data
+  ami                         = local.ami_image
+  instance_type               = var.instance_type
+  subnet_id                   = var.subnet_id
+  vpc_security_group_ids      = var.security_group_ids
+  user_data                   = var.user_data
+  associate_public_ip_address = true
   tags = {
     Name = var.name
   }
