@@ -19,6 +19,18 @@ module "ec2_instance" {
 }
 
 
+module "ec2_instance_beta" {
+  source             = "./modules/ec2-instance"
+  instance_type      = "t3.micro"
+  user_data          = file("user_data.sh")
+  subnet_id          = module.instance_network.subnet_id
+  security_group_ids = [module.instance_network.security_group_id]
+  zone               = module.instance_network.zones[0]
+  ebs_size           = 2
+}
+
+
+
 ####################################################################### 
 #### This is an example that shows you how to create an AMI  #########
 #### from an EC2 and use the same AMI to lunch another EC2.  #########
