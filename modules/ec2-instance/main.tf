@@ -51,16 +51,16 @@ resource "aws_instance" "instance" {
 
 # Elastic Network Interface
 
-resource "aws_network_interface" "web_network_interface" {
-  subnet_id       = var.subnet_id
-  security_groups = var.security_group_ids
-  description = "Secondary ENI"
+# resource "aws_network_interface" "web_network_interface" {
+#   subnet_id       = var.subnet_id
+#   security_groups = var.security_group_ids
+#   description = "Secondary ENI"
 
-  attachment {
-    instance     = aws_instance.instance.id
-    device_index = 1
-  }
-}
+#   attachment {
+#     instance     = aws_instance.instance.id
+#     device_index = 1
+#   }
+# }
 
 resource "aws_volume_attachment" "ebs_att" {
   device_name = "/dev/sdh"
