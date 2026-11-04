@@ -35,3 +35,11 @@ variable "ami_image" {
   type = string
   default = null
 }
+
+
+
+variable "name" {
+  description = "EC2 instance Name"
+  type = string
+  default = null
+}

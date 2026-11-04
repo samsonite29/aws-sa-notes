@@ -16,6 +16,7 @@ module "ec2_instance" {
   security_group_ids = [module.instance_network.security_group_id]
   zone               = module.instance_network.zones[0]
   ebs_size           = 2
+  name               = "Alpha Instance"  
 }
 
 
@@ -27,6 +28,7 @@ module "ec2_instance_beta" {
   security_group_ids = [module.instance_network.security_group_id]
   zone               = module.instance_network.zones[0]
   ebs_size           = 2
+  name               = "Beta Instance"  
 }
 
 
