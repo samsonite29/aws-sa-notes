@@ -17,7 +17,7 @@ locals {
     yum install -y httpd
     systemctl start httpd
     systemctl enable httpd
-    echo "<h1>${local.alpha_name} from $(hostname -f)</h1>" > /var/www/html/index.html
+    echo "<h1>${local.alpha_name} Alpha from $(hostname -f)</h1>" > /var/www/html/index.html
   EOF
 
   user_data_beta = <<-EOF
@@ -26,7 +26,7 @@ locals {
     yum install -y httpd
     systemctl start httpd
     systemctl enable httpd
-    echo "<h1>${local.beta_name} from $(hostname -f)</h1>" > /var/www/html/index.html
+    echo "<h1>${local.beta_name} Beta from $(hostname -f)</h1>" > /var/www/html/index.html
   EOF
 }
 

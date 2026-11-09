@@ -49,3 +49,9 @@
 - **VPC Lattice**: touches connectivity, routing, and security (auth policies).
 - **PrivateLink**: connectivity, but chosen mainly for the security benefit of staying off the internet.
 - **Flow Logs / Reachability Analyzer**: visibility tools, grouped under security because that's their main use.
+
+### Core Difference Between AWS Load Balancers
+
+1. ALB(Application Load Balancer)
+2. NLB(Network Load Balancer)
+3. GLB(Gateway Load Balancer)
