@@ -55,3 +55,8 @@
 1. ALB(Application Load Balancer) - Mainly dealing with HTTP and HTTPS traffic (Web requests) Application Layer OSIU
 2. NLB(Network Load Balancer) - Mainly TCP, UDP and TLS traffic(Network Connection) - Transport Layer on OSI
 3. GLB(Gateway Load Balancer) - Distributes Traffic to multiple virutal apliances(Firewall,  Intrusion Detection Software) for inspection before traffic continues to destination. GLB provides a centralised point for distributing traffic across multiple appliances
+
+
+### References 
+
+1. OSI Model - https://www.infosectrain.com/blog/osi-model-a-comprehensive-guide-for-exam-and-interview

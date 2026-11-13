@@ -10,14 +10,6 @@ data "aws_vpc" "default_vpc" {
 # Lookup for AZs
 data "aws_availability_zones" "available" {}
 
-
-# Lookup for default subnet id
-data "aws_subnet" "default_subnet" {
-  vpc_id            = data.aws_vpc.default_vpc.id
-  availability_zone = data.aws_availability_zones.available.names[0] # returns eu-west-1a
-  default_for_az    = true
-}
-
 data "aws_subnet" "az_a" {
   vpc_id            = data.aws_vpc.default_vpc.id
   availability_zone = "eu-west-1a"

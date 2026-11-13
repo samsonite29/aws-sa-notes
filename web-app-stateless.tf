@@ -44,7 +44,7 @@ module "ec2_instance" {
   user_data          = local.user_data_alpha
   subnet_id          = module.instance_network.subnet_az_a
   security_group_ids = [module.instance_network.security_group_id]
-  zone               = module.instance_network.zones[0]
+  zone               = module.instance_network.az_a
   ebs_size           = 2
   name               = local.alpha_name
 }
@@ -56,7 +56,7 @@ module "ec2_instance_beta" {
   user_data          = local.user_data_beta
   subnet_id          = module.instance_network.subnet_az_b
   security_group_ids = [module.instance_network.security_group_id]
-  zone               = module.instance_network.zones[0]
+  zone               = module.instance_network.az_b
   ebs_size           = 2
   name               = local.beta_name
 }

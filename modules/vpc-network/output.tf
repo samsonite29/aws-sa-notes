@@ -25,3 +25,13 @@ output "vpc_id" {
   description = "VPC Id"
   value = data.aws_vpc.default_vpc.id
 }
+
+
+output "az_a" {
+  value = data.aws_availability_zones.available.names[0]
+}
+
+
+output "az_b" {
+  value = data.aws_availability_zones.available.names[1]
+}
