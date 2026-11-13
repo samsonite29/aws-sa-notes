@@ -1,7 +1,3 @@
-output "subnet_id" {
-  description = "Subnet Id"
-  value       = data.aws_subnet.default_subnet.id
-}
 
 output "security_group_id" {
   description = "Security Group Id"
