@@ -52,6 +52,6 @@
 
 ### Core Difference Between AWS Load Balancers
 
-1. ALB(Application Load Balancer)
-2. NLB(Network Load Balancer)
-3. GLB(Gateway Load Balancer)
+1. ALB(Application Load Balancer) - Mainly dealing with HTTP and HTTPS traffic (Web requests) Application Layer OSIU
+2. NLB(Network Load Balancer) - Mainly TCP, UDP and TLS traffic(Network Connection) - Transport Layer on OSI
+3. GLB(Gateway Load Balancer) - Distributes Traffic to multiple virutal apliances(Firewall,  Intrusion Detection Software) for inspection before traffic continues to destination. GLB provides a centralised point for distributing traffic across multiple appliances
