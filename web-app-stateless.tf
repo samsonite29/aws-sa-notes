@@ -38,7 +38,7 @@ locals {
 
 module "instance_network" {
   source = "./modules/vpc-network"
-  # public_alb_sg_id = module.alpha_beta_alb.alb_sg_id
+  public_lb_sg_id = module.alpha_beta_nlb.nlb_sg_id
 }
 
 module "ec2_instance_alpha" {

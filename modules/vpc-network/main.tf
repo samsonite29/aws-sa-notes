@@ -4,7 +4,7 @@
 
 
 locals {
-  is_alb_sg = try(length(trimspace(var.public_alb_sg_id)) > 0, false)
+  is_lb_sg = try(length(trimspace(var.public_lb_sg_id)) > 0, false)
 }
 
 
@@ -62,8 +62,8 @@ resource "aws_security_group" "web_sg" {
 resource "aws_vpc_security_group_ingress_rule" "allow_web_http_ipv4_ingress" {
   security_group_id = aws_security_group.web_sg.id
 
-  cidr_ipv4   = local.is_alb_sg ? null : "0.0.0.0/0"
-  referenced_security_group_id = local.is_alb_sg ? var.public_alb_sg_id : null
+  cidr_ipv4   = local.is_lb_sg ? null : "0.0.0.0/0"
+  referenced_security_group_id = local.is_lb_sg ? var.public_lb_sg_id : null
   from_port   = 80
   ip_protocol = "tcp"
   to_port     = 80
