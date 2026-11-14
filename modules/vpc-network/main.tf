@@ -26,6 +26,10 @@ data "aws_subnet" "az_b" {
   availability_zone = "eu-west-1b"
 }
 
+data "aws_subnet" "az_c" {
+  vpc_id            = data.aws_vpc.default_vpc.id
+  availability_zone = "eu-west-1c"
+}
 
 resource "aws_security_group" "web_sg" {
   name        = "allow_web_sg"

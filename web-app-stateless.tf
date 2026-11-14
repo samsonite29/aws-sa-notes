@@ -1,6 +1,6 @@
 #################################################################################################################
 #### This is file demostrates how to build a stateless web application using the following AWS services #########
-#### Network Routing & Traffic Management - ALB
+#### Network Routing & Traffic Management - ALB, NLB
 #### Compute - EC2 
 #### Network Security  - Security Group
 #### Connectivity - Subnets
@@ -65,12 +65,27 @@ module "ec2_instance_beta" {
 }
 
 
-module "alpha_beta_alb"{
-  source = "./modules/alb"
-  name = "alpha-beta"
+### You either enable both ALB and NLB at the same time or use one at a time 
+
+
+# module "alpha_beta_alb"{
+#   source = "./modules/alb"
+#   name = "alpha-beta"
+#   vpc_id = module.instance_network.vpc_id
+#   subnet_ids = [module.instance_network.subnet_az_a, module.instance_network.subnet_az_b]
+#   instance_sg_id = module.instance_network.security_group_id
+#   instance_ids = {
+#     web_instance_alpha = module.ec2_instance_alpha.instance_id
+#     web_instance_beta = module.ec2_instance_beta.instance_id
+#   }
+# }
+
+
+module "alpha_beta_nlb" {
+  source = "./modules/nlb"
+  name = "alpha-beta-nlb"
   vpc_id = module.instance_network.vpc_id
-  subnet_ids = [module.instance_network.subnet_az_a, module.instance_network.subnet_az_b]
-  instance_sg_id = module.instance_network.security_group_id
+  subnet_ids = [module.instance_network.subnet_az_a, module.instance_network.subnet_az_b, module.instance_network.subnet_az_c]
   instance_ids = {
     web_instance_alpha = module.ec2_instance_alpha.instance_id
     web_instance_beta = module.ec2_instance_beta.instance_id

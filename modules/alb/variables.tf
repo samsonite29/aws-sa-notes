@@ -1,5 +1,5 @@
 variable "name" {
-  description = "Load Balancer Name"
+  description = "Application Load Balancer Name"
   type = string
   validation {
     condition     = length(var.name) <= 19 && can(regex("^[a-z0-9]([a-z0-9-]*[a-z0-9])?$", var.name))

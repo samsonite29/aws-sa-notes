@@ -12,6 +12,10 @@ output "subnet_az_b" {
   value = data.aws_subnet.az_b.id
 }
 
+output "subnet_az_c" {
+  value = data.aws_subnet.az_c.id
+}
+
 output "zones" {
   description = "All availability zones"
   value = data.aws_availability_zones.available.names
@@ -30,4 +34,9 @@ output "az_a" {
 
 output "az_b" {
   value = data.aws_availability_zones.available.names[1]
+}
+
+
+output "az_c" {
+  value = data.aws_availability_zones.available.names[2]
 }
