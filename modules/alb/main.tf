@@ -215,4 +215,25 @@ resource "aws_lb_listener" "lb_listener" {
   }
 }
 
+// When request hit that rule, we send a fixed error message
+// Example  curl lb-dns/error
 
+resource "aws_lb_listener_rule" "lb_listener_error_rule" {
+  listener_arn = aws_lb_listener.lb_listener.arn
+
+  action {
+    type = "fixed-response"
+
+    fixed_response {
+      content_type = "application/json"
+      message_body = "Error Page From Gundabad"
+      status_code  = "404"
+    }
+  }
+
+  condition {
+    path_pattern {
+      values = ["/error"]
+    }
+  }
+}

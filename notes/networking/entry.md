@@ -58,7 +58,11 @@
 
 ### Best Practices For Network Security
 
-1. If you have a ALB in front of EC2 Instances, Your instance should only be accessed via the ALB
+1. If you have an ALB in front of EC2 instances, instances should only accept inbound traffic from the ALB's security group.
+   - SGs are stateful: responses back to the ALB are allowed automatically, so no instance egress rule is needed for them.
+   - Restrict ALB egress to the instance SG on the app and health check ports.
+   - Instance egress should allow only what the instance itself starts (DB, package repos, AWS APIs), not "ALB only".
+   - NACLs are stateless: allow ephemeral ports (1024–65535) outbound to the ALB subnets.
 
 ### References
 
