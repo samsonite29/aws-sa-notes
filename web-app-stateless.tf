@@ -70,5 +70,5 @@ module "alpha_beta_alb"{
   vpc_id = module.instance_network.vpc_id
   subnet_ids = [module.instance_network.subnet_az_a, module.instance_network.subnet_az_b]
   instance_sg_id = module.instance_network.security_group_id
-  instance_ids = [module.ec2_instance.instance_id, module.ec2_instance_beta.instance_id]
+  instance_ids = [module.ec2_instance_alpha.instance_id, module.ec2_instance_beta.instance_id]
 }
