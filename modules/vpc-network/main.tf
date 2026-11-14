@@ -28,7 +28,7 @@ data "aws_subnet" "az_b" {
 
 
 resource "aws_security_group" "web_sg" {
-  name        = "allow_web_ssh"
+  name        = "allow_web_sg"
   description = "Allow web inbound traffic"
   vpc_id      = data.aws_vpc.default_vpc.id
    // prevent operations from hanging indefinitely
