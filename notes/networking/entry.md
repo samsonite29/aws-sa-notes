@@ -56,7 +56,10 @@
 2. NLB(Network Load Balancer) - Mainly TCP, UDP and TLS traffic(Network Connection) - Transport Layer on OSI
 3. GLB(Gateway Load Balancer) - Distributes Traffic to multiple virutal apliances(Firewall,  Intrusion Detection Software) for inspection before traffic continues to destination. GLB provides a centralised point for distributing traffic across multiple appliances
 
+### Best Practices For Network Security
 
-### References 
+1. If you have a ALB in front of EC2 Instances, Your instance should only be accessed via the ALB
 
-1. OSI Model - https://www.infosectrain.com/blog/osi-model-a-comprehensive-guide-for-exam-and-interview
+### References
+
+1. OSI Model - [https://www.infosectrain.com/blog/osi-model-a-comprehensive-guide-for-exam-and-interview]

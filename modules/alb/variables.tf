@@ -23,21 +23,15 @@ variable "subnet_ids" {
 }
 
 variable "instance_sg_id" {
-  description = "Security group attached to Alpha and Beta"
+  description = "Security group attached to EC2 instances"
   type        = string
 }
 
 
-variable "alpha_instance_id" {
-  description = "Alpha Instance Id"
-  type        = string
+variable "instance_ids" {
+  description = "A list of ec2 Instances"
+  type = set(string)
+  
 }
-
-
-variable "beta_instance_id" {
-  description = "Beta Instance Id"
-  type        = string
-}
-
 
 

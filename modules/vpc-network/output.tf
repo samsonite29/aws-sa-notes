@@ -1,7 +1,7 @@
 
 output "security_group_id" {
   description = "Security Group Id"
-  value =  aws_security_group.allow_web_ssh.id
+  value =  aws_security_group.web_sg.id
 }
 
 output "subnet_az_a" {

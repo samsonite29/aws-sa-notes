@@ -2,6 +2,12 @@
 ### All things networking for Computing ####
 ################################
 
+
+locals {
+  is_alb_sg = try(length(trimspace(var.public_alb_sg_id)) > 0, false)
+}
+
+
 # Lookup for default vpc id
 data "aws_vpc" "default_vpc" {
   default = true
@@ -21,13 +27,17 @@ data "aws_subnet" "az_b" {
 }
 
 
-resource "aws_security_group" "allow_web_ssh" {
+resource "aws_security_group" "web_sg" {
   name        = "allow_web_ssh"
   description = "Allow web inbound traffic"
   vpc_id      = data.aws_vpc.default_vpc.id
    // prevent operations from hanging indefinitely
   timeouts {
     delete = "5m"
+  }
+
+  lifecycle {
+    create_before_destroy = true
   }
 }
 # Ingress - Traffic going into your system . Ingress rules: who can initiate a connection to you.
@@ -44,25 +54,20 @@ resource "aws_security_group" "allow_web_ssh" {
 #   to_port     = 443
 # }
 
-resource "aws_vpc_security_group_ingress_rule" "allow_web_ssh_http_ipv4_ingress" {
-  security_group_id = aws_security_group.allow_web_ssh.id
+### Either open to all HTTP traffic or from an ALB
+resource "aws_vpc_security_group_ingress_rule" "allow_web_http_ipv4_ingress" {
+  security_group_id = aws_security_group.web_sg.id
 
-  cidr_ipv4   = "0.0.0.0/0"
+  cidr_ipv4   = local.is_alb_sg ? null : "0.0.0.0/0"
+  referenced_security_group_id = local.is_alb_sg ? var.public_alb_sg_id : null
   from_port   = 80
   ip_protocol = "tcp"
   to_port     = 80
 }
 
-resource "aws_vpc_security_group_ingress_rule" "allow_web_ssh_ipv4_ingress" {
-  security_group_id = aws_security_group.allow_web_ssh.id
-  cidr_ipv4         = "18.202.216.48/29"
-  from_port         = 22
-  ip_protocol       = "tcp"
-  to_port           = 22
-}
 
 resource "aws_vpc_security_group_egress_rule" "allow_all_ipv4_egress" {
-  security_group_id = aws_security_group.allow_web_ssh.id
+  security_group_id = aws_security_group.web_sg.id
   cidr_ipv4         = "0.0.0.0/0"
   ip_protocol       = "-1"
 }

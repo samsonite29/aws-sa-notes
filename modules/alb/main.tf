@@ -54,6 +54,9 @@
 # 6. The instance responds through the ALB
 
 # The selected instance processes the request and returns its response to the ALB. The ALB then sends that response back over its connection to the client.
+
+
+
 data "aws_caller_identity" "current" {}
 
 # S3 bucket for Application Load Balancer logs 
@@ -104,7 +107,7 @@ resource "aws_security_group" "lb_sg" {
 }
 
 
-# Ingress rule for security group  which allows only HTTP request 
+# Ingress rule for security group  which allows only HTTP request from anywhere
 resource "aws_vpc_security_group_ingress_rule" "http_ingress" {
   security_group_id = aws_security_group.lb_sg.id
   cidr_ipv4   = "0.0.0.0/0"
@@ -117,6 +120,7 @@ resource "aws_vpc_security_group_ingress_rule" "http_ingress" {
 resource "aws_vpc_security_group_egress_rule" "http_egress" {
   security_group_id = aws_security_group.lb_sg.id
   // allow ALB → instances (anything in instance_sg_id) on 80
+  // outgoing traffic  from alb goes to the instance security group
   referenced_security_group_id   =  var.instance_sg_id
   from_port   = 80
   ip_protocol = "tcp"
@@ -152,13 +156,11 @@ resource "aws_lb_target_group" "lb_target_group" {
 
 # Attach Instances to target group
 resource "aws_lb_target_group_attachment" "web_instance" {
-  for_each = {
-    alpha = var.alpha_instance_id
-    beta  = var.beta_instance_id
-  }
+  
+  for_each = toset(var.instance_ids)
 
   target_group_arn = aws_lb_target_group.lb_target_group.arn
-  target_id        = each.value
+  target_id        = each.key
   port             = 80
 }
 

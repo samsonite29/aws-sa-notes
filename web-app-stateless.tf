@@ -4,6 +4,7 @@
 #### Compute - EC2 
 #### Network Security  - Security Group
 #### Connectivity - Subnets
+#### Request  ->  ALB Security Group  -> ALB -> Instance Security Group -> Instance
 #### To run this on AWS, Just remove the comments !!!
 ###################################################################################################################
 
@@ -36,9 +37,10 @@ locals {
 
 module "instance_network" {
   source = "./modules/vpc-network"
+  public_alb_sg_id = module.alpha_beta_alb.alb_sg_id
 }
 
-module "ec2_instance" {
+module "ec2_instance_alpha" {
   source             = "./modules/ec2-instance"
   instance_type      = "t3.micro"
   user_data          = local.user_data_alpha
@@ -68,7 +70,5 @@ module "alpha_beta_alb"{
   vpc_id = module.instance_network.vpc_id
   subnet_ids = [module.instance_network.subnet_az_a, module.instance_network.subnet_az_b]
   instance_sg_id = module.instance_network.security_group_id
-  alpha_instance_id = module.ec2_instance.instance_id
-  beta_instance_id = module.ec2_instance_beta.instance_id
-
+  instance_ids = [module.ec2_instance.instance_id, module.ec2_instance_beta.instance_id]
 }
