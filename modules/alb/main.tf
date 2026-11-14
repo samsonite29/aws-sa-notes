@@ -157,8 +157,7 @@ resource "aws_lb_target_group" "lb_target_group" {
 # Attach Instances to target group
 resource "aws_lb_target_group_attachment" "web_instance" {
   
-  for_each = toset(var.instance_ids)
-
+  for_each = var.instance_ids
   target_group_arn = aws_lb_target_group.lb_target_group.arn
   target_id        = each.value
   port             = 80

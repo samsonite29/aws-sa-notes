@@ -30,8 +30,7 @@ variable "instance_sg_id" {
 
 variable "instance_ids" {
   description = "A list of ec2 Instances"
-  type = set(string)
-  
+  type = map(string)
 }
 
 
