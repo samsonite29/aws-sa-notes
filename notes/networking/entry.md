@@ -52,7 +52,7 @@
 
 ### Core Difference Between AWS Load Balancers
 
-1. ALB(Application Load Balancer) - Mainly dealing with HTTP and HTTPS traffic (Web requests) Application Layer OSIU
+1. ALB(Application Load Balancer) - Mainly dealing with HTTP and HTTPS traffic (Web requests) Application Layer on OSI
 2. NLB(Network Load Balancer) - Mainly TCP, UDP and TLS traffic(Network Connection) - Transport Layer on OSI
 3. GLB(Gateway Load Balancer) - Distributes Traffic to multiple virutal apliances(Firewall,  Intrusion Detection Software) for inspection before traffic continues to destination. GLB provides a centralised point for distributing traffic across multiple appliances
 
@@ -63,6 +63,19 @@
    - Restrict ALB egress to the instance SG on the app and health check ports.
    - Instance egress should allow only what the instance itself starts (DB, package repos, AWS APIs), not "ALB only".
    - NACLs are stateless: allow ephemeral ports (1024–65535) outbound to the ALB subnets.
+
+### Sticky Sessions In Load Balancer
+
+Sticky Session enables the load balancer to bind a user's session to a specific instance. This ensures that all requests from the user during the session are sent to the same instance.
+
+### SSL & TLS
+
+![alt text](image.png)
+
+1. SSL Ceritificate - Traffic between client and LB is encrypted in trasnit that is called inflight encryption. Traffic can only be decrypted by only the sender and the reciever.
+
+2. SSL - Secure Sockets Layer is used to encrypt connections
+3. TLS - Transport Layer Security, A newer version of TLS
 
 ### References
 
