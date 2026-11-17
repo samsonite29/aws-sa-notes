@@ -27,6 +27,7 @@ variable "zone" {
 variable "ebs_size" {
   description = "EBS volume Size"
   type = number
+  default = 0
 }
 
 

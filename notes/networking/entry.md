@@ -107,6 +107,14 @@ Matters most when instance counts across AZs are uneven.
 2. SSL - Secure Sockets Layer is used to encrypt connections
 3. TLS - Transport Layer Security, A newer version of TLS
 
+#### SNI - Server Name Indication
+
+**Problem** - How do I load multiple SSL certifcates onto one web server and server multiple websites. This solution only supports ALB and NLB.
+
+![alt text](image-3.png)
+
+With ALB and NLB multiple listeners can use multiple SSL certificates via SNI
+
 ### References
 
 1. OSI Model - [https://www.infosectrain.com/blog/osi-model-a-comprehensive-guide-for-exam-and-interview]
