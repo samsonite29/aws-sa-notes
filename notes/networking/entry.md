@@ -68,6 +68,36 @@
 
 Sticky Session enables the load balancer to bind a user's session to a specific instance. This ensures that all requests from the user during the session are sent to the same instance.
 
+### Cross Load Balancing
+
+Cross load balancing is evenly distributing traffic across instances in all AZ. But when and why would I consider this approach.
+
+#### Cross-zone load balancing — example
+
+Setup: 1 load balancer, nodes in eu-west-1a and eu-west-1b.
+10 instances in 1a, 10 instances in 1b.
+
+5 instances in 1a go down → 5 in 1a, 10 in 1b (15 total).
+
+**Cross-zone OFF:** each node only sends to its own AZ.
+
+![alt text](image-2.png)
+
+Each AZ still gets 50% of traffic.
+
+- 1a: 50% ÷ 5  = 10% per instance (overloaded)
+- 1b: 50% ÷ 10 = 5% per instance (underused)
+
+**Cross-zone ON:** nodes send to all healthy targets in any AZ.
+
+![alt text](image-1.png)
+
+- 100% ÷ 15 = ~6.7% per instance, even load
+
+Takeaway: cross-zone evens out load *per instance*, not per AZ.
+Matters most when instance counts across AZs are uneven.
+
+
 ### SSL & TLS
 
 ![alt text](image.png)
