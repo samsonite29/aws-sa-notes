@@ -1,7 +1,7 @@
 resource "aws_autoscaling_group" "autoscaling_group" {
   name = var.name
-  desired_capacity   = 1
-  max_size           = 1
+  desired_capacity   = var.desired_capacity
+  max_size           = var.max_capacity
   min_size           = 1
   health_check_type         = "ELB"
 

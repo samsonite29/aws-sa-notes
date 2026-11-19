@@ -17,3 +17,13 @@ variable "subnet_ids" {
   description = "List of subnet IDs to launch resources in. Subnets automatically determine which availability zones the group will reside."
   type = set(string)
 }
+
+variable "max_capacity" {
+  description = " ASG max capacity"
+  type = number
+}
+
+variable "desired_capacity" {
+  description = " ASG desired capacity"
+  type = number
+}
