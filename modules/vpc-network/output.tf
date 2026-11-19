@@ -18,7 +18,7 @@ output "subnet_az_c" {
 
 output "zones" {
   description = "All availability zones"
-  value = data.aws_availability_zones.available.names
+  value = data.aws_availability_zones.az.names
 }
 
 output "vpc_id" {
@@ -28,15 +28,15 @@ output "vpc_id" {
 
 
 output "az_a" {
-  value = data.aws_availability_zones.available.names[0]
+  value = data.aws_availability_zones.az.names[0]
 }
 
 
 output "az_b" {
-  value = data.aws_availability_zones.available.names[1]
+  value = data.aws_availability_zones.az.names[1]
 }
 
 
 output "az_c" {
-  value = data.aws_availability_zones.available.names[2]
+  value = data.aws_availability_zones.az.names[2]
 }

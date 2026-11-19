@@ -14,21 +14,21 @@ data "aws_vpc" "default_vpc" {
 }
 
 # Lookup for AZs
-data "aws_availability_zones" "available" {}
+data "aws_availability_zones" "az" {}
 
 data "aws_subnet" "az_a" {
   vpc_id            = data.aws_vpc.default_vpc.id
-  availability_zone = "eu-west-1a"
+  availability_zone = data.aws_availability_zones.az.names[0]
 }
 
 data "aws_subnet" "az_b" {
   vpc_id            = data.aws_vpc.default_vpc.id
-  availability_zone = "eu-west-1b"
+  availability_zone = data.aws_availability_zones.az.names[1]
 }
 
 data "aws_subnet" "az_c" {
   vpc_id            = data.aws_vpc.default_vpc.id
-  availability_zone = "eu-west-1c"
+  availability_zone = data.aws_availability_zones.az.names[2]
 }
 
 resource "aws_security_group" "web_sg" {
