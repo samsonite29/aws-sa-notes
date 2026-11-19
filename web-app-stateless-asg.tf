@@ -28,14 +28,14 @@ module "unicron_alb" {
   source = "./modules/alb"
   name = "unicron-lab"
   subnet_ids = [module.unicron_instance_network.az_a, module.unicron_instance_network.az_b, module.unicron_instance_network.az_c]
-  vpc_id = module.instance_network.vpc_id
+  vpc_id = module.unicron_instance_network.vpc_id
   enable_instance_attachement = false
 }
 
 module "unicron_asg" {
   source = "./modules/asg"
   name = "unicron-asg-demo"
-  launch_template_id = modeule.ec2_launch_template.id
+  launch_template_id = module.ec2_launch_template.id
   subnet_ids = [module.unicron_instance_network.az_a, module.unicron_instance_network.az_b, module.unicron_instance_network.az_c]
   lb_target_group_arn = module.unicron_alb.lb_target_group
 }
