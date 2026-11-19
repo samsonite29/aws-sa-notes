@@ -29,6 +29,7 @@ module "unicron_alb" {
   name = "unicron-lab"
   subnet_ids = [module.unicron_instance_network.az_a, module.unicron_instance_network.az_b, module.unicron_instance_network.az_c]
   vpc_id = module.instance_network.vpc_id
+  enable_instance_attachement = false
 }
 
 module "unicron_asg" {

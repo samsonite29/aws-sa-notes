@@ -24,9 +24,7 @@ jobs:
         uses: hashicorp/setup-terraform@v4
 
       - name: Terraform Init
-        run: terraform init -upgrade -input=false -no-color
-        env:
-          TF_LOG: DEBUG
+        run: terraform init -upgrade -input=false
 
       - name: Terraform State
         run: terraform state list
