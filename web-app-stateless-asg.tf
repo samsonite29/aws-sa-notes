@@ -35,7 +35,7 @@ module "unicron_alb" {
 module "unicron_asg" {
   source = "./modules/asg"
   name = "unicron-asg-demo"
-  launch_template_id = module.ec2_launch_template.id
+  launch_template_id = module.ec2_launch_template.launch_template_id
   subnet_ids = [module.unicron_instance_network.az_a, module.unicron_instance_network.az_b, module.unicron_instance_network.az_c]
   lb_target_group_arn = module.unicron_alb.lb_target_group
 }
