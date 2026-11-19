@@ -28,8 +28,5 @@ resource "aws_launch_template" "instance_template" {
 
   image_id = data.aws_ami.image.id
   instance_type = "t2.micro"
-
-
-
   user_data = base64encode(var.user_data)
 }
