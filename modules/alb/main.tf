@@ -95,7 +95,7 @@ resource "aws_s3_bucket_policy" "allow_lb_logging" {
 
 resource "aws_security_group" "lb_sg" {
   name_prefix = "${var.name}-alb-"
-  description = "Allow web inbound traffic"
+  description = "Security Group For ALB"
   vpc_id      = var.vpc_id
   timeouts {
     delete = "5m"

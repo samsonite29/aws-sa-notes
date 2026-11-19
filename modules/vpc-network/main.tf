@@ -33,7 +33,7 @@ data "aws_subnet" "az_c" {
 
 resource "aws_security_group" "web_sg" {
   name        = "allow_web_sg"
-  description = "Allow web inbound traffic"
+  description = "Security Group For every other resource. EC2 etc"
   vpc_id      = data.aws_vpc.default_vpc.id
    // prevent operations from hanging indefinitely
   timeouts {
