@@ -9,3 +9,8 @@ variable "user_data" {
     description = "User data"
     default = null
 }
+
+variable "sg_id" {
+  description = "Security Group Id"
+  type = string
+}

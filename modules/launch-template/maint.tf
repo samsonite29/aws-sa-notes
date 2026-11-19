@@ -29,4 +29,6 @@ resource "aws_launch_template" "instance_template" {
   image_id = data.aws_ami.image.id
   instance_type = "t3.micro"
   user_data = base64encode(var.user_data)
+
+  vpc_security_group_ids = [var.sg_id]
 }
