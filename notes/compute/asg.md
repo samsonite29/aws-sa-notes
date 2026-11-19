@@ -24,6 +24,22 @@ Traffic follows a daily evening curve, peaking every night between 7:00 PM and 1
 ![alt text](image-2.png)
 Based on the alarm we can create scale-in and out policies
 
+### ASG Scaling Policies aka Automatic Scaling
+
+1. Dynamic Scaling
+    - Target Tracking Scaling : Example of this is - I want my average ASG CPU to stay around 40%
+    - Simple or Step Scaling : Example of this is - When a cloudwatch alarm is triggered(CPU > 60%) Scale out to 4
+
+2. Schedule Scaling - Trying to predict or anticipate traffic based on usage patterns. Example - Increase min capacity to 4 at 7pm on Friday evening. a live boxing match or a one-off live show at 9pm Saturday. It’s a known date, so you schedule it.
+3. Predictive Scaling - continously forecasting load and scale ahead of time. every day, streaming climbs from about 6pm, peaks around 9pm, and drops off after midnight. It’s the same shape every day, just a little different each time. Predictive scaling learns that curve and adds capacity before 6pm without you writing a schedule.
+
+### Types of metrics to scale on
+
+1. CPU Utilization
+2. RequestCountPerTarget
+3. In / Out Network
+4. Custom Metric
+
 ## Reference
 
 Netflix Cloud Topology - [https://www.youtube.com/watch?v=TkFyZyxFRBM]

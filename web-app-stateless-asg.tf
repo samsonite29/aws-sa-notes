@@ -44,6 +44,6 @@ module "unicron_asg" {
   launch_template_id = module.ec2_launch_template.launch_template_id
   subnet_ids = [module.unicron_instance_network.subnet_az_a, module.unicron_instance_network.subnet_az_b, module.unicron_instance_network.subnet_az_c]
   lb_target_group_arn = module.unicron_alb.lb_target_group
-  desired_capacity = 2
-  max_capacity =  2
+  desired_capacity = 1
+  max_capacity =  3
 }

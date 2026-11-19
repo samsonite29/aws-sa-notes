@@ -14,9 +14,21 @@ resource "aws_autoscaling_group" "autoscaling_group" {
 
 }
 
-
 resource "aws_autoscaling_attachment" "autoscaling_attachment" {
   autoscaling_group_name = aws_autoscaling_group.autoscaling_group.id
   lb_target_group_arn    = var.lb_target_group_arn
 }
 
+
+resource "aws_autoscaling_policy" "this" {
+  autoscaling_group_name = aws_autoscaling_group.autoscaling_group.name
+  name                   = "${var.name}-target-tracking-policy"
+  policy_type            = "TargetTrackingScaling"
+  target_tracking_configuration {
+    target_value = 40.0
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
+    }
+
+  }
+}
