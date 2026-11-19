@@ -25,7 +25,6 @@ variable "subnet_ids" {
 variable "instance_sg_id" {
   description = "Security group attached to EC2 instances"
   type        = string
-  default     = null
 }
 
 

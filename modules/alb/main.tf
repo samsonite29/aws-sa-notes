@@ -121,7 +121,7 @@ resource "aws_vpc_security_group_egress_rule" "http_egress" {
   security_group_id = aws_security_group.lb_sg.id
   // allow ALB → instances (anything in instance_sg_id) on 80
   // outgoing traffic  from alb goes to the instance security group
-  referenced_security_group_id   =  var.enable_instance_attachement ? var.instance_sg_id : null
+  referenced_security_group_id   =  var.instance_sg_id
   from_port   = 80
   ip_protocol = "tcp"
   to_port     = 80

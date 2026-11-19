@@ -30,6 +30,7 @@ module "unicron_alb" {
   subnet_ids = [module.unicron_instance_network.az_a, module.unicron_instance_network.az_b, module.unicron_instance_network.az_c]
   vpc_id = module.unicron_instance_network.vpc_id
   enable_instance_attachement = false
+  instance_sg_id = module.unicron_instance_network.security_group_id
 }
 
 module "unicron_asg" {
