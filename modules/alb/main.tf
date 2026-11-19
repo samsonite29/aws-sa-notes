@@ -157,8 +157,7 @@ resource "aws_lb_target_group" "lb_target_group" {
 # Attach Instances to target group
 # Not needed when LB is used in conjuction with ASG because attachment is fixed
 resource "aws_lb_target_group_attachment" "web_instance" {
-  count = var.enable_instance_attachement ? 1 :0
-  for_each = var.instance_ids
+  for_each = var.enable_instance_attachement ? var.instance_ids : {}
   target_group_arn = aws_lb_target_group.lb_target_group.arn
   target_id        = each.value
   port             = 80

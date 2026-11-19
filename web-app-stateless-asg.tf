@@ -8,7 +8,7 @@
 ###################################################################################################################
 
 module "ec2_launch_template" {
-  source = "./modules/launch_template"
+  source = "./modules/launch-template"
   template_name = "asg-demo"
    user_data = <<-EOF
     #!/bin/bash
