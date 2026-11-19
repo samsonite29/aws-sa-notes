@@ -121,7 +121,7 @@ resource "aws_vpc_security_group_egress_rule" "http_egress" {
   security_group_id = aws_security_group.lb_sg.id
   // allow ALB → instances (anything in instance_sg_id) on 80
   // outgoing traffic  from alb goes to the instance security group
-  referenced_security_group_id   =  var.instance_sg_id
+  referenced_security_group_id   =  var.enable_instance_attachement ? var.instance_sg_id : null
   from_port   = 80
   ip_protocol = "tcp"
   to_port     = 80
@@ -155,8 +155,9 @@ resource "aws_lb_target_group" "lb_target_group" {
 
 
 # Attach Instances to target group
+# Not needed when LB is used in conjuction with ASG because attachment is fixed
 resource "aws_lb_target_group_attachment" "web_instance" {
-  
+  count = var.enable_instance_attachement ? 1 :0
   for_each = var.instance_ids
   target_group_arn = aws_lb_target_group.lb_target_group.arn
   target_id        = each.value

@@ -16,14 +16,17 @@ You manage the OS and everything above it: patching, runtime, and scaling setup.
 You package the app. A platform schedules and runs it.
 
 ### Orchestration (decides where containers run)
+
 - **ECS**: AWS's own container orchestrator.
 - **EKS**: managed Kubernetes.
 
 ### Capacity (what containers run on)
+
 - **EC2 nodes**: you manage the instances.
 - **Fargate**: serverless capacity, with no nodes to manage.
 
 ### Registry
+
 - **ECR**: stores and scans container images.
 
 ## Function: you hand AWS a code snippet
@@ -49,11 +52,13 @@ AWS queues the work and finds capacity. For large, non-interactive workloads.
 ## Notes
 
 ### Hybrid & Edge (runs the categories above outside AWS regions)
+
 - **Outposts**: AWS racks in your own data centre.
 - **Local Zones**: AWS compute close to specific cities.
 - **Wavelength**: AWS compute inside 5G telecom networks.
 - **ECS / EKS Anywhere**: run AWS container orchestration on your own hardware.
 
 ### Built on compute, but their own categories
+
 - **Databases**: RDS, DynamoDB, and so on.
 - **AI/ML**: SageMaker, Bedrock.

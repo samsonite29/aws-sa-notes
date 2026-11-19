@@ -97,7 +97,6 @@ Each AZ still gets 50% of traffic.
 Takeaway: cross-zone evens out load *per instance*, not per AZ.
 Matters most when instance counts across AZs are uneven.
 
-
 ### SSL & TLS
 
 ![alt text](image.png)
@@ -114,6 +113,12 @@ Matters most when instance counts across AZs are uneven.
 ![alt text](image-3.png)
 
 With ALB and NLB multiple listeners can use multiple SSL certificates via SNI
+
+### Connection Draining or De-registering Delay(ALB and NLB)
+
+What this does is that it gives your instances time to complete active request while the instance is unhealthy or being de-registered
+
+Also stops sending new requests to the EC2 instance which is being de-registered
 
 ### References
 

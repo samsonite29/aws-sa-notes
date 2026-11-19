@@ -25,12 +25,20 @@ variable "subnet_ids" {
 variable "instance_sg_id" {
   description = "Security group attached to EC2 instances"
   type        = string
+  default     = null
 }
 
 
 variable "instance_ids" {
   description = "A list of ec2 Instances"
-  type = map(string)
+  type =  map(string)
+  default = {}
 }
 
+
+variable "enable_instance_attachement" {
+  description = "Whether to enable instance attachement"
+  type = bool
+  default = true
+}
 
