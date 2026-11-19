@@ -25,7 +25,7 @@ resource "aws_autoscaling_policy" "this" {
   name                   = "${var.name}-target-tracking-policy"
   policy_type            = "TargetTrackingScaling"
   target_tracking_configuration {
-    target_value = 40.0
+    target_value = 4.0
     predefined_metric_specification {
       predefined_metric_type = "ASGAverageCPUUtilization"
     }
