@@ -18,32 +18,47 @@ Tables with fixed columns, joined via keys. Strong consistency and transactions.
 Each type is built for a specific access pattern.
 
 ### Key-Value
+
 Look up a value by its key. Extremely fast at huge scale, weak at complex queries.
+
 - **DynamoDB**
 
 ### Document
+
 JSON-like documents with a flexible schema.
+
 - **DocumentDB**: MongoDB-compatible.
 
 ### In-Memory
+
 Data held in RAM for microsecond reads. Often a cache in front of another database.
+
 - **ElastiCache**: Valkey, Redis, Memcached.
+
 - **MemoryDB**: durable in-memory database, Redis/Valkey-compatible.
 
 ### Graph
+
 Nodes and relationships. Good for connection questions like fraud rings and recommendations.
+
 - **Neptune**
 
 ### Wide-Column
+
 Rows with flexible columns, spread across many nodes for very high write throughput.
+
 - **Keyspaces**: Cassandra-compatible.
 
 ### Time-Series
+
 Data points stamped with time, like metrics and IoT readings.
+
 - **Timestream**
 
 ### Search
+
 Full-text search and log analytics.
+
 - **OpenSearch**
 
 ## Workload Type (cuts across all of the above)
