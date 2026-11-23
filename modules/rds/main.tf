@@ -1,8 +1,12 @@
 
+data "aws_vpc" "default_vpc" {
+  default = true
+}
+
 resource "aws_security_group" "rds" {
   name        = "rds-database-sg"
   description = "Allow inbound database traffic to RDS"
-  vpc_id      = aws_vpc.main.id
+  vpc_id      = data.aws_vpc.default_vpc.id
 }
 
 # 2. Allow inbound traffic from an application security group (e.g., MYSQL on 3306)
