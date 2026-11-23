@@ -16,6 +16,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_inbound_db" {
   to_port                      = 3306
   ip_protocol                  = "tcp"
   description                  = "Allow MySQL access"
+  cidr_ipv4 = "10.0.0.0/16"
 }
 
 # 3. Allow outbound traffic
