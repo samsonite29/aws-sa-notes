@@ -17,7 +17,6 @@ Aurora is a severless database services for OLTP workloads
 
 - Typical cross region replication takes less than 1 second
 
-
 ![alt text](image-5.png)
 
 ## Reference

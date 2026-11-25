@@ -85,6 +85,39 @@ Trick - You can use snapshot to restore your RDS database
 5. Control Network Access with SG
 6. CloudWatch for audit logs
 
+### RDS Proxy 
+
+RDS proxy is a database proxy( A reverse proxy that sit between the client/application code and database servers). The proxy manage connection pooling, traffic, HA/failover etc.
+
+RDS proxy improves database efficiency to reduce stress on the database resources such CPU and RAM and also minimizes open connections and timeoutes.
+
+RDS proxy are never available publicly. They must be accessed from a VPC.
+
+#### Reduces Failover by 66% Explained
+
+The database fails over. The standby or reader becomes the new writer, taking about the same time with or without the proxy. Anything already committed is safe on the new writer.
+
+2.Without the proxy, the app is slow to notice. Its connections break, it keeps hitting the old IP from cached DNS, and then every instance reconnects at once. This is where most of the downtime comes from.
+    i. New requests sent during failover fail with connection errors or time out.
+    ii. In-flight transactions are rolled back.
+
+3.With the proxy, the app doesn't have to notice. The app stays connected to the proxy. The proxy spots the new writer straight away, holds requests for a moment, then sends them through on connections it already has open.
+
+    i. New requests sent during failover are held, not failed. The app just sees a slower response.
+    ii. In-flight transactions on the old writer still fail.
+
+Example:
+
+1. Without proxy: the app is broken for 60 s
+
+    ~25 s for the database to fail over
+    ~35 s more for the app to notice: dead connections timing out, cached DNS pointing at the old IP, then the reconnect storm
+2. With proxy: the app is broken for 20 s
+
+    The same ~25 s database failover, but the proxy starts routing to the new writer as soon as it's ready, and requests are held rather than failing, so the app sees less of it
+
+reduction = (time without proxy − time with proxy) ÷ time without proxy
+(60 − 20) ÷ 60 = 0.66 → 66% less downtime
 
 ## Reference
 
@@ -92,3 +125,4 @@ Trick - You can use snapshot to restore your RDS database
 2. [https://aws.amazon.com/what-is/data-replication/]
 3. [https://aws.amazon.com/blogs/database/amazon-rds-under-the-hood-multi-az/]
 4. [https://homepages.cwi.nl/~boncz/lsde/papers/aurora.pdf]
+5. [https://aws.plainenglish.io/understanding-database-proxies-the-role-of-amazon-rds-proxy-55a7b1209ac8]
