@@ -43,7 +43,7 @@
 - **API Gateway**: front door for APIs, handling routing, throttling, and auth.
 - **AWS Cloud Map**: service discovery, so services can find each other by name.
 
-## Services that straddle categories
+## Services that span across multiple networking categories
 
 - **Gateway Load Balancer**: a load balancer by design, but used almost entirely for security inspection.
 - **VPC Lattice**: touches connectivity, routing, and security (auth policies).
@@ -123,3 +123,83 @@ Also stops sending new requests to the EC2 instance which is being de-registered
 ### References
 
 1. OSI Model - [https://www.infosectrain.com/blog/osi-model-a-comprehensive-guide-for-exam-and-interview]
+
+### Terraform Networking Modules
+
+Build top to bottom. Each layer reads outputs from the one above.
+
+#### Layer 0: Org and shared network
+
+Owned by the central network team. Rarely changes.
+
+| Module | Covers |
+|---|---|
+| `ipam` | VPC IPAM pools, CIDR allocation |
+| `transit-gateway` | TGW, route tables, RAM sharing |
+| `cloud-wan` | Core network and policy (notes only for the exam) |
+| `direct-connect` | DX gateway, virtual interfaces |
+| `site-to-site-vpn` | Customer gateway, VPN connection |
+| `firewall-manager` | Org-wide WAF, SG and firewall policies |
+| `dns-resolver` | Resolver endpoints, forwarding rules, DNS Firewall |
+
+#### Layer 1: VPC foundation
+
+One per account or environment.
+
+| Module | Covers |
+|---|---|
+| `vpc` | VPC, public/private subnets, IGW, egress-only IGW, route tables |
+| `nat-gateway` | NAT plus Elastic IPs, one per AZ or single |
+| `tgw-attachment` | Attaches the VPC to TGW and adds routes |
+| `vpc-peering` | Peering connection and routes on both sides |
+| `vpc-endpoints` | Gateway endpoints (S3, DynamoDB) and interface endpoints |
+| `network-acls` | Subnet-level allow/deny rules |
+| `flow-logs` | VPC Flow Logs to S3 or CloudWatch |
+
+#### Layer 2: Security baseline
+
+Per VPC. Owned by the security team.
+
+| Module | Covers |
+|---|---|
+| `network-firewall` | Firewall, policy, rule groups, inspection routes |
+| `gateway-load-balancer` | GWLB and endpoints for third-party appliances |
+| `verified-access` | Zero-trust access to internal apps |
+| `client-vpn` | Client VPN endpoint, auth, authorisation rules |
+| `shield-advanced` | Protections and response team setup (paid, notes only) |
+
+#### Layer 3: App and traffic
+
+Owned by app teams. Changes often.
+
+| Module | Covers |
+|---|---|
+| `security-group` | One reusable SG module, used by every app |
+| `alb` | ALB, listeners, path and host rules, target groups |
+| `nlb` | NLB with static IPs |
+| `waf` | Web ACL and managed rules, attached to ALB, CloudFront or API GW |
+| `route53-zone` | Public and private hosted zones |
+| `route53-records` | Weighted, latency, geo, failover records and health checks |
+| `cloudfront-distribution` | CDN with OAC to S3 |
+| `global-accelerator` | Accelerator, listeners, endpoint groups |
+| `api-gateway-rest` | API, stages, throttling, auth |
+| `privatelink-service` | Endpoint service to expose your app to other VPCs |
+| `vpc-lattice` | Service network, services, auth policies |
+| `cloud-map` | Namespace and service discovery |
+
+#### Not modules
+
+- **Reachability Analyzer / Network Access Analyzer**: tools you run, not infrastructure.
+- **ENI**: created by other resources, so no module of its own.
+
+
+###  Exam priority: build in this order
+
+1. `vpc`: VPC, public/private subnets across 2+ AZs, Internet Gateway, egress-only IGW, route tables
+2. `nat-gateway`: NAT + Elastic IP, plus the private route to it
+3. `security-group`: stateful, allow-only rules
+4. `network-acls`: stateless, subnet-level allow/deny
+5. `vpc-endpoints`: S3/DynamoDB gateway endpoints + one interface endpoint
+6. `flow-logs`: send to S3 or CloudWatch, then test SG vs NACL blocks
+7. `vpc-peering`: build a second VPC and peer them
+8. `transit-gateway`: replace the peering with TGW and compare
