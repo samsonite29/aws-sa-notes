@@ -58,7 +58,6 @@ With AWS
 
 ![alt text](image-1.png)
 
-
 ### MultiAZ and DR
 
 Standby Instance becomes main instance in DR. But why does Multi AZ use synchronous replication? Multi-AZ = sync because it’s about availability without data loss. Read replicas = async because they’re about performance and distance.
@@ -74,3 +73,4 @@ Standby Instance becomes main instance in DR. But why does Multi AZ use synchron
 1. [https://www.youtube.com/watch?v=mBUCF1WGI_I]
 2. [https://aws.amazon.com/what-is/data-replication/]
 3. [https://aws.amazon.com/blogs/database/amazon-rds-under-the-hood-multi-az/]
+4. [https://homepages.cwi.nl/~boncz/lsde/papers/aurora.pdf]

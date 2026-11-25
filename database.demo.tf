@@ -4,7 +4,7 @@
 #### To run this on AWS, Just remove the comments !!!
 ###################################################################################################################
 
-module "loans_service_db" {
-  source = "./modules/rds"
-  db_name =  "loans"
-}
+# module "loans_service_db" {
+#   source = "./modules/rds"
+#   db_name =  "loans"
+# }
