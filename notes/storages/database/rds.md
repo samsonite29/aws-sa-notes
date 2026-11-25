@@ -68,6 +68,24 @@ Standby Instance becomes main instance in DR. But why does Multi AZ use synchron
 
 ![alt text](image-3.png)
 
+### RDS Backups Trick
+
+RDS has automated backup process that does daily backup of transactions logs every 5 minutes, this process allows point in time restore but this can be very expensive. The backup is for 1 - 35days
+
+Another way is doing manual db snapshot with no expiry date
+
+Trick - You can use snapshot to restore your RDS database
+
+### RDS Security
+
+1. Data Encryption is done at rest using KMS
+2. To Encrypt an existing database, you can use snapshot and restore process
+3. Read replica cannot be encrypted if the main database is not encrypted
+4. IAM authentication with RDS
+5. Control Network Access with SG
+6. CloudWatch for audit logs
+
+
 ## Reference
 
 1. [https://www.youtube.com/watch?v=mBUCF1WGI_I]
