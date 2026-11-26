@@ -21,7 +21,8 @@ locals {
  }
  
 }
-# module "network_foundations" {
-#   source = "./modules/vpc"
-#   subnets = local.env_subnets
-# }
+module "network_foundations" {
+  source = "./modules/vpc"
+  private_subnets = local.private_subnets
+  public_subnets = local.public_subnets
+}
