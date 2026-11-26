@@ -20,3 +20,15 @@ Subnet Mask(How many of the bits can change in an IP)
 
 ***Example 10.0.4.0/28 = 2^(32-28) = 16, so 10.0.4.0 = 10.0.4.15***
 ***10.0.4.0/29 = 2^(32-29) = 8, so 10.0.4.0 = 10.0.4.7***
+
+
+## VPC Subnet
+
+A subnet is a smaller CIDR range carved out of the VPC's range, and AWS adds an AZ, a route table and a NACL(Firewall for subnet) on top.
+
+A subnet is tied to one AZ and they are for Routing control (security boundary)
+
+Exam Tip - You need 29 IP Address for EC2 instance
+
+You can't use 10.0.0.0/27 because 2^(32-27) = 32-5(AWS reserves first 3 and last address) = 27 which is less than 29(what you need)
+You can use 10.0.0.0/26 because 2^(32-26) = 64 - 5 = 59 and 59 > 29
