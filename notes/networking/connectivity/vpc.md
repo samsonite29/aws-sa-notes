@@ -1,5 +1,7 @@
 # VPC
 
+VPC are tied to one region and span across multiple AZ
+
 ## IP Address
 
 Each of the four octets can be any number from 0 to 255. So the full range runs from 0.0.0.0 to 255.255.255.255.
