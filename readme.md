@@ -123,9 +123,3 @@ Decoupling, DR and architecture lead because they show up in both the exam and p
 1. Watch the whole section. Take rough notes as you go. Do the console demos along with the video if you like, but no Terraform yet.
 2. Draw the diagram. Do it from memory first, then check it against the slides. If you can’t draw it, rewatch that part before building.
 
-
-## Two things to watch
-
-**That's 9 build sections in about 4.5 weeks.** That's more than one a week, so keep 9, 15 and 25 small: one module each, applied and destroyed in a single sitting. Put your weekend time into 8, 19 and 26.
-
-**Build `vpc-network` early, even though it's section 26.** Sections 8, 9 and 19 all run better in a proper VPC with private subnets. Use the default VPC for section 8, then build `vpc-network` before 9, since RDS should go in private subnets. When you reach 26, you're extending a module you already have, not starting from scratch.
