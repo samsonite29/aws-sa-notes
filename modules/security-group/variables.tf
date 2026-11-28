@@ -34,7 +34,7 @@ variable "ingress_to_port" {
 variable "ingress_ip_protocol" {
     type = string
     description = "Ingress IP protocol"
-    default = null
+    default = "-1"
 }
 
 variable "egress_referenced_security_group_id" {
@@ -58,7 +58,7 @@ variable "egress_to_port" {
 variable "egress_ip_protocol" {
     type = string
     description = "Egress IP protocol"
-    default = null
+    default     = "-1"
 }
 
 variable "egress_cidr" {
