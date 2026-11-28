@@ -33,11 +33,9 @@ module "security_group" {
   source = "./modules/security-group"
   sg_name = "nwt-fd"
   vpc_id = module.vpc.vpc_id
-  ingress_cidr = "0.0.0.0/0"
   ingress_ip_protocol = "ssh"
   ingress_from_port = 22
   ingress_to_port = 22
-
 }
 
 module "launch_template" {

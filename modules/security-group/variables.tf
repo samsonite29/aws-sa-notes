@@ -11,6 +11,7 @@ variable "vpc_id" {
 variable "ingress_cidr" {
     type = string
     description = "CIDR for IPV4"
+    default =  "0.0.0.0/0"
 }
 
 variable "ingress_referenced_security_group_id" {
@@ -64,5 +65,5 @@ variable "egress_ip_protocol" {
 variable "egress_cidr" {
     type = string
     description = "CIDR for IPV4 Egress"
-    default = null
+    default =  "0.0.0.0/0"
 }
