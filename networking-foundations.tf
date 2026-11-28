@@ -33,7 +33,7 @@ module "security_group" {
   source = "./modules/security-group"
   sg_name = "nwt-fd"
   vpc_id = module.vpc.vpc_id
-  ingress_ip_protocol = "SSH"
+  ingress_ip_protocol = "tcp"
   ingress_from_port = 22
   ingress_to_port = 22
 }
