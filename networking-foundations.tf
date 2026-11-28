@@ -33,14 +33,15 @@ module "security_group" {
   source = "./modules/security-group"
   sg_name = "nwt-fd"
   vpc_id = module.vpc.vpc_id
-  ingress_ip_protocol = "ssh"
+  ingress_ip_protocol = "SSH"
   ingress_from_port = 22
   ingress_to_port = 22
 }
 
-module "launch_template" {
+module "public_instance_launch_template" {
   source = "./modules/launch-template"
   template_name = "nwt-fd"
+  enable_public_ip = true
    user_data = <<-EOF
     #!/bin/bash
     yum update -y
@@ -50,11 +51,11 @@ module "launch_template" {
     echo "<h1> From Foundations with love & $(hostname -f)</h1> with love" > /var/www/html/index.html
   EOF
   sg_id = module.security_group.security_group_id
+  subnet_id = module.vpc.public_subnet_ids[0]
 }
 
 module "instance" {
   source = "./modules/instance"
-  launch_template_id = module.launch_template.launch_template_id
+  launch_template_id = module.public_instance_launch_template.launch_template_id
   launch_template_version = "1"
-  subnet_id = module.vpc.public_subnet_ids[0]
 }

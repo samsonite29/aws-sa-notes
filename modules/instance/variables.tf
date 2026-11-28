@@ -1,9 +1,3 @@
-
-variable "subnet_id" {
-  description = "Subnet ID"
-  type        = string
-}
-
 variable "name" {
   description = "EC2 instance Name"
   type = string

@@ -30,5 +30,9 @@ resource "aws_launch_template" "instance_template" {
   instance_type = "t3.micro"
   user_data = base64encode(var.user_data)
 
-  vpc_security_group_ids = [var.sg_id]
+  network_interfaces {
+    associate_public_ip_address = var.enable_public_ip
+    subnet_id                   = var.subnet_id
+    security_groups             = [var.sg_id]
+  }
 }
