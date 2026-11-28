@@ -21,8 +21,42 @@ locals {
  }
  
 }
-# module "network_foundations" {
-#   source = "./modules/vpc"
-#   private_subnets = local.private_subnets
-#   public_subnets = local.public_subnets
-# }
+
+
+module "vpc" {
+  source = "./modules/vpc"
+  private_subnets = local.private_subnets
+  public_subnets = local.public_subnets
+}
+
+module "security_group" {
+  source = "./modules/security-group"
+  sg_name = "nwt-fd"
+  vpc_id = module.vpc.vpc_id
+  ingress_cidr = "0.0.0.0/0"
+  ingress_ip_protocol = "ssh"
+  ingress_from_port = 22
+  ingress_to_port = 22
+
+}
+
+module "launch_template" {
+  source = "./modules/launch-template"
+  template_name = "nwt-fd"
+   user_data = <<-EOF
+    #!/bin/bash
+    yum update -y
+    yum install -y httpd
+    systemctl start httpd
+    systemctl enable httpd
+    echo "<h1> From Foundations with love & $(hostname -f)</h1> with love" > /var/www/html/index.html
+  EOF
+  sg_id = module.security_group.security_group_id
+}
+
+module "instance" {
+  source = "./modules/instance"
+  launch_template_id = module.launch_template.launch_template_id
+  launch_template_version = "1"
+  subnet_id = module.vpc.public_subnet_ids[0]
+}

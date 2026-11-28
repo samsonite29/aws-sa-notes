@@ -4,11 +4,6 @@ variable "subnet_id" {
   type        = string
 }
 
-variable "security_group_ids" {
-  description = "Security group IDs"
-  type = list(string)
-}
-
 variable "name" {
   description = "EC2 instance Name"
   type = string
