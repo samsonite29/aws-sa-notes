@@ -59,7 +59,7 @@ variable "egress_to_port" {
 variable "egress_ip_protocol" {
     type = string
     description = "Egress IP protocol"
-    default     = "tcp"
+    default     = "-1"
 }
 
 variable "egress_cidr" {
