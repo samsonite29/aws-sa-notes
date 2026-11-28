@@ -32,7 +32,7 @@ variable "ingress_to_port" {
 }
 
 variable "ingress_ip_protocol" {
-    type = number
+    type = string
     description = "Ingress IP protocol"
     default = null
 }
